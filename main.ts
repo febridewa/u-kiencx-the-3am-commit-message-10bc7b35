@@ -24,6 +24,8 @@ const LINE =
 
 // The gate only accepts 1–139 characters of non-blank UTF-8 text;
 // fail loudly here rather than shipping an invalid entry.
+// No trailing newline: the gate counts every byte, and a newline would
+// be an extra character the judge reads as part of the line.
 if (LINE.length < 1 || LINE.length > 139 || LINE.trim().length === 0) {
   throw new Error(`entry line must be 1-139 chars, got ${LINE.length}`);
 }
